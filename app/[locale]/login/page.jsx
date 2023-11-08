@@ -39,10 +39,7 @@ const SigninPage = () => {
       console.error("Login failed");
     }
   };
-  const handleLogout = () => {
-    Cookies.remove("userData");
-    router.push("/login");
-  };
+
 
   return (
     <>
