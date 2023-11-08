@@ -24,12 +24,10 @@ const Hero = () => {
         id="home"
         className="relative z-10 overflow-hidden pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
       >
-        <SectionTitle title="All Users"  center/>
+        <SectionTitle title="All Users" center />
         <div className="container flex items-center lg:justify-between justify-center flex-wrap">
           {data.users?.map((user) => (
-
             <UserCard user={user} key={user.id} />
-            
           ))}
         </div>
 

@@ -4,13 +4,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { useState } from "react";
 import { Shap1 } from "@/components/Shapes/Shap1";
 import { login } from "@/libs/login";
 import { useRouter } from "next-intl/client";
+import { useMutation } from "@tanstack/react-query";
 
 const SigninPage = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
@@ -28,18 +27,24 @@ const SigninPage = () => {
   // if (user !== null) {
   //   router.push("/");
   // }
+  const mutation = useMutation({
+    mutationFn: login,
+    onSuccess: async () => {
+      console.log("I'm first!");
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+  // const mutation = useMutation(login, {
+  //   onSuccess: () => {
+  //     reset();
+  //     console.log("first");
+  //   },
+  // });
   const onSubmit = async (data) => {
- 
-    const loginSuccess = await login(data.username, data.password);
-
-    if (loginSuccess) {
-      router.push("/account");
-    } else {
-      // Handle login error
-      console.error("Login failed");
-    }
+    mutation.mutate({ username: data.username, password: data.password });
   };
-
 
   return (
     <>
@@ -73,7 +78,9 @@ const SigninPage = () => {
                       {...register("username")}
                     />
                     {errors.username && (
-                      <p className="  my-1 text-red">{errors.username.message}</p>
+                      <p className="  my-1 text-red">
+                        {errors.username.message}
+                      </p>
                     )}
                   </div>
                   <div className="mb-8">
@@ -99,11 +106,11 @@ const SigninPage = () => {
 
                   <div className="mb-6">
                     <button
-                      disabled={isSubmitting}
+                      disabled={mutation.isPending}
                       type="submit"
                       className=" flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
                     >
-                      {isSubmitting ? `Loading...` : "Sign In"}
+                      {mutation.isPending ? `Loading...` : "Sign In"}
                     </button>
                   </div>
                 </form>
@@ -136,9 +143,7 @@ export default SigninPage;
 //   password: yup.string().required("كلمة المرور مطلوبة!"),
 // });
 const schema = yup.object({
-  username: yup
-    .string()
-    .required("User name is required!"),
- 
+  username: yup.string().required("User name is required!"),
+
   password: yup.string().required("Password is required!"),
 });
