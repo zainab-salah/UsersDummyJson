@@ -1,5 +1,18 @@
-import LangSwitcher from "@/components/Header/LangSwitcher";
+
+import Hero from "@/components/Hero";
+import ScrollUp from "@/components/common/ScrollUp";
+
+ 
+ 
+ 
 
 export default function Home() {
-  return <></>;
+
+  return (
+    <>
+      <ScrollUp />
+      <Hero />
+     
+    </>
+  );
 }

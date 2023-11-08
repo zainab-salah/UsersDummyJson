@@ -21,12 +21,12 @@ export default function Providers({ children, locale, messages }) {
   //   }, []);
   return (
     <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
+      <QueryClientProvider client={queryClient}> 
       <NextIntlClientProvider locale={locale} messages={messages}>
-        <QueryClientProvider client={queryClient}>
           {/* {isLoading ? <Loading /> : <>{children}</>} */}
           <>{children}</>
-        </QueryClientProvider>
       </NextIntlClientProvider>
+        </QueryClientProvider>
     </ThemeProvider>
   );
 }
