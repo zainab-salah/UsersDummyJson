@@ -11,13 +11,14 @@ export async function login(username, password) {
       },
       body: JSON.stringify({ username, password }),
     });
-    console.log(response);
+  
     if (response.ok) {
    const data = await response.json();
 
     Cookies.set('userData', JSON.stringify(data), { expires: rememberMe ? 30 : null });
       return true; 
     } else {
+      console.log(response);
       return false;  
     }
   } catch (error) {

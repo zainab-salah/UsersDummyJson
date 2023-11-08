@@ -29,21 +29,19 @@ const SigninPage = () => {
   // }
   const mutation = useMutation({
     mutationFn: login,
+
     onSuccess: async () => {
-      console.log("I'm first!");
+      reset();
+      router.push("/account");
     },
     onError: (error) => {
       console.log(error);
     },
   });
-  // const mutation = useMutation(login, {
-  //   onSuccess: () => {
-  //     reset();
-  //     console.log("first");
-  //   },
-  // });
+  console.log(mutation);
   const onSubmit = async (data) => {
     mutation.mutate({ username: data.username, password: data.password });
+    console.log(mutation.data);
   };
 
   return (
