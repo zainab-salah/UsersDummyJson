@@ -4,27 +4,36 @@ import { useQuery } from "@tanstack/react-query";
 import UserCard from "../Cards/UserCard";
 import SectionTitle from "../common/SectionTitle";
 import Loading from "@/app/[locale]/loading";
+import Link from "next/link";
 
 const Hero = () => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
       fetch("https://dummyjson.com/users").then((res) => res.json()),
   });
 
-  if (isPending) return <Loading />;
+  if (isPending || isFetching) return <Loading />;
 
   if (error) return "An error has occurred: " + error.message;
   return (
     <>
       <section
         id="home"
-        className="relative z-10 overflow-hidden pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
+        className="relative z-10 overflow-hidden pb-16 pt-[120px] md:pb-[120px]
+         md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
       >
         <SectionTitle title="All Users" center />
         <div className="container flex items-center lg:justify-between justify-center flex-wrap">
           {data.users?.map((user) => (
-            <UserCard user={user} key={user.id} />
+            <Link
+              href={`${user.id}`}
+              key={user.id}
+              className="wow fadeInUp  cursor-pointer relative z-10 rounded-md bg-primary/10 p-4 my-5 mx-1 lg:w-1/4 dark:bg-primary/10 "
+              data-wow-delay=".2s"
+            >
+              <UserCard user={user} />
+            </Link>
           ))}
         </div>
 

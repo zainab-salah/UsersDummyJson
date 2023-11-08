@@ -1,29 +1,22 @@
-import React from 'react'
-import Shap2 from '../Shapes/Shap2'
+import React from "react";
 
-const UserCard = ({user}) => {
+const UserCard = ({ user }) => {
   return (
-    <div
-    className="wow fadeInUp  relative z-10 rounded-md bg-primary/[3%] p-4 my-5 mx-1 lg:w-1/4 dark:bg-primary/10 "
-    data-wow-delay=".2s"
-  >
-    <h3 className="mb-4 text-2xl font-bold leading-tight text-center text-black dark:text-white">
-  {  user.username}
-    </h3>
-    <div className="flex items-center justify-center p-1 my-1">
-      <img
-        src={user.image}
-        alt={user.username}
-        width={150}
+    <div>
+      <h3 className="mb-4 text-2xl font-bold leading-tight text-center text-black dark:text-white">
+        {user.username}
+      </h3>
+      <div className="flex items-center justify-center p-1 my-1">
+        <img
+          src={user.image}
+          alt={user.username}
+          width={150}
+          height={150}
+          className="rounded-full"
+        />
+      </div>
 
-        height={150}
-     
-        className="rounded-full"
-      />
-    </div>
- 
-    <div className="flex flex-col gap-4">
-      
+      <div className="flex flex-col gap-4">
         <div className="flex items-center gap-5">
           <div className="flex h-[50px] w-[50px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
             <svg
@@ -50,8 +43,7 @@ const UserCard = ({user}) => {
           </div>
           <p>Last Name: {user.lastName}</p>
         </div>
-     
- 
+
         <div className="flex items-center gap-5">
           <div className="flex h-[50px] w-[50px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
             <svg
@@ -78,8 +70,7 @@ const UserCard = ({user}) => {
           </div>
           <p>Email: {user.email}</p>
         </div>
-   
- 
+
         <div className="flex items-center gap-5">
           <div className="flex h-[50px] w-[50px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
             <svg
@@ -93,14 +84,9 @@ const UserCard = ({user}) => {
           </div>
           <p>User Name: {user.username}</p>
         </div>
-
-     
-     
+      </div>
     </div>
+  );
+};
 
-
-  </div>
-  )
-}
-
-export default UserCard
+export default UserCard;

@@ -4,6 +4,7 @@ import Link from "next-intl/link";
 import { useEffect, useState } from "react";
 import ThemeToggler from "./ThemeToggler";
 import navData from "./navData";
+import Logo from "@/public/Logo";
 
 const Header = () => {
   // Navbar toggle
@@ -53,24 +54,12 @@ const Header = () => {
                   sticky ? "py-5 lg:py-2" : "py-8"
                 } `}
               >
-                {/* <Image
-                  src="/images/logo/logo-light2.png"
-                  alt="logo"
-                  width={120}
-                  height={20}
-                  className="w-full dark:hidden"
-                />
-                <Image
-                  src="/images/logo/logo22.png"
-                  alt="logo"
-                  width={120}
-                  height={20}
-                  className="hidden w-full dark:block"
-                /> */}
+                <Logo classes="w-full dark:hidden text-dark " />
+                <Logo classes="hidden w-full text-white  dark:block " />
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
-              {/* <div>
+              <div>
                 <button
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
@@ -107,7 +96,7 @@ const Header = () => {
                         {menuItem.path ? (
                           <Link
                             href={menuItem.path}
-                            className={`dr-rtl flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
+                            className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
                           >
                             {menuItem.title}
                           </Link>
@@ -115,7 +104,7 @@ const Header = () => {
                           <>
                             <a
                               onClick={() => handleSubmenu(index)}
-                              className="dr-rtl flex  cursor-pointer  items-center justify-between py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6"
+                              className="flex  cursor-pointer  items-center justify-between py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6"
                             >
                               {menuItem.title}
                               <span className="pl-3">
@@ -128,7 +117,7 @@ const Header = () => {
                               </span>
                             </a>
                             <div
-                              className={`submenu dr-rtl  relative left-0 top-full rounded-md bg-white transition-[top] duration-300 group-hover:opacity-100 dark:bg-dark lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
+                              className={`submenu  relative left-0 top-full rounded-md bg-white transition-[top] duration-300 group-hover:opacity-100 dark:bg-dark lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
                                 openIndex === index ? "block" : "hidden"
                               }`}
                             >
@@ -137,7 +126,7 @@ const Header = () => {
                                   onClick={navbarToggleHandler}
                                   href={submenuItem.path}
                                   key={submenuItem.id}
-                                  className="dr-rtl block  rounded  py-2.5 text-right text-sm text-dark hover:opacity-70 dark:text-white lg:px-3"
+                                  className="block  rounded  py-2.5 text-right text-sm text-dark hover:opacity-70 dark:text-white lg:px-3"
                                 >
                                   {submenuItem.title}
                                 </Link>
@@ -155,9 +144,9 @@ const Header = () => {
                         >
                           <Link
                             href="/account"
-                            className={`dr-rtl flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
+                            className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
                           >
-                            حسابي
+                            My Info
                           </Link>
                         </li>
                         <li
@@ -166,9 +155,9 @@ const Header = () => {
                         >
                           <button
                             onClick={handleLogOut}
-                            className={`dr-rtl flex py-2 text-right text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
+                            className={`flex py-2 text-right text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
                           >
-                            تسجيل خروج
+                            Logout
                           </button>
                         </li>
                       </>
@@ -179,10 +168,10 @@ const Header = () => {
                           onClick={navbarToggleHandler}
                         >
                           <Link
-                            href="/signin"
-                            className={`dr-rtl flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
+                            href="/login"
+                            className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
                           >
-                            تسجيل الدخول
+                            Login
                           </Link>
                         </li>
                         <li
@@ -191,49 +180,49 @@ const Header = () => {
                         >
                           <Link
                             href="/signup"
-                            className={`dr-rtl flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
+                            className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
                           >
-                            إنشاء حساب جديد
+                            Create New User
                           </Link>
                         </li>
                       </>
                     )}
                   </ul>
                 </nav>
-              </div> */}
+              </div>
 
-              {/* {user === null ? (
-                <div className="flex items-center justify-end pr-16 lg:pr-0">
-                  <Link
-                    href="/signin"
-                    className="hidden px-7 py-3 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
-                  >
-                    تسجيل الدخول
-                  </Link>
-                  <Link
-                    href="/signup"
-                    className="ease-in-up hidden rounded-md bg-primary px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
-                  >
-                    إنشاء حساب جديد
-                  </Link>
-                </div>
-              ) : (
-                <div className="flex items-center justify-end pr-16 lg:pr-0">
-                  <Link
-                    href="/account"
-                    className="hidden px-7 py-3 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
-                  >
-                    حسابي
-                  </Link>
-                  <button
-                    onClick={handleLogOut}
-                    className="ease-in-up hidden rounded-md bg-primary px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
-                  >
-                    تسجيل خروج
-                  </button>
-                </div>
-              )} */}
-              <div>
+              <div className="flex items-center justify-between">
+                {user === null ? (
+                  <div className="flex items-center justify-end pr-16 lg:pr-0">
+                    <Link
+                      href="/login"
+                      className="hidden px-7 py-3 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/signup"
+                      className="ease-in-up hidden rounded-md bg-primary px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
+                    >
+                      Create New User
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-end pr-16 lg:pr-0">
+                    <Link
+                      href="/account"
+                      className="hidden px-7 py-3 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
+                    >
+                      My Info
+                    </Link>
+                    <button
+                      onClick={handleLogOut}
+                      className="ease-in-up hidden rounded-md bg-primary px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
                 <ThemeToggler />
               </div>
             </div>
