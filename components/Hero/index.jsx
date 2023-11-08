@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import UserCard from "../Cards/UserCard";
 import SectionTitle from "../common/SectionTitle";
+import Loading from "@/app/[locale]/loading";
 
 const Hero = () => {
   const { isPending, error, data } = useQuery({
@@ -10,12 +11,8 @@ const Hero = () => {
     queryFn: () =>
       fetch("https://dummyjson.com/users").then((res) => res.json()),
   });
-  console.log(data);
-  if (isPending) return "Loading...";
 
-  if (error) return "An error has occurred: " + error.message;
-
-  if (isPending) return "Loading...";
+  if (isPending) return <Loading />;
 
   if (error) return "An error has occurred: " + error.message;
   return (

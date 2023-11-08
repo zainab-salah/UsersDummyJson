@@ -12,12 +12,13 @@ import Loading from "../loading";
 import { Shap3 } from "@/components/Shapes/Shap3";
 
 import Shap2 from "@/components/Shapes/Shap2";
+import ModalCard from "@/components/Cards/ModalCard";
 
 const Account = () => {
   const userDataCookie = Cookies.get("userData");
   const user = userDataCookie ? JSON.parse(userDataCookie) : null;
   const router = useRouter();
-console.log(user)
+
   const handleLogout = () => {
     Cookies.remove("userData");
     router.push("/login");
@@ -47,24 +48,20 @@ console.log(user)
                   src={user.image}
                   alt={user.username}
                   width={150}
-     
                   height={150}
-               
                   className="rounded-full"
                 />
               </div>
               <div className="my-10 flex flex-col items-center justify-center gap-5 lg:flex-row lg:pr-0">
-                <button className="ease-in-up   rounded-md bg-primary px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:px-9 lg:px-6 xl:px-9">
-                  Edit my Account
-                </button>
+                <ModalCard user={user} />
                 <button
-            onClick={handleLogout}
+                  onClick={handleLogout}
                   className="  rounded-md border-2 border-white px-7 py-3 text-base font-bold text-dark hover:opacity-70 dark:text-white  "
                 >
                   Sign Out
                 </button>
               </div>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 text-body-color">
                 <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
                   <div className="flex items-center gap-5">
                     <div className="flex h-[50px] w-[50px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
@@ -139,23 +136,21 @@ console.log(user)
                   <div className="flex items-center gap-5">
                     <div className="flex h-[50px] w-[50px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
                       <svg
-                        viewBox="0 0 384 512"
+                        viewBox="0 0 1024 1024"
                         fill="currentColor"
                         height="25px"
                         width="25px"
                       >
-                        <path d="M215.7 499.2C267 435 384 279.4 384 192 384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2 12.3 15.3 35.1 15.3 47.4 0zM192 256c-35.3 0-64-28.7-64-64s28.7-64 64-64 64 28.7 64 64-28.7 64-64 64z" />
+                        <path d="M872 394c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8H708V152c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v166H400V152c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v166H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h168v236H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h168v166c0 4.4 3.6 8 8 8h64c4.4 0 8-3.6 8-8V706h228v166c0 4.4 3.6 8 8 8h64c4.4 0 8-3.6 8-8V706h164c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8H708V394h164zM628 630H400V394h228v236z" />
                       </svg>
                     </div>
-                    {/* الدولة : {country} */}
+                    <p>User Id: {user.id}</p>
                   </div>
                 </div>
               </div>
 
               <Shap2 />
             </div>
-          ) : user==null ? (
-            <NoEnter />
           ) : (
             <Loading />
           )}
