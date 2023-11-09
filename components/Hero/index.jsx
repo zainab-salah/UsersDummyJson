@@ -5,6 +5,7 @@ import UserCard from "../Cards/UserCard";
 import SectionTitle from "../common/SectionTitle";
 import Loading from "@/app/[locale]/loading";
 import Link from "next/link";
+import NoEnter from "../common/NoEnter";
 
 const Hero = () => {
   const usersApi = process.env.USER_API;
@@ -18,7 +19,8 @@ const Hero = () => {
 
   if (isPending || isFetching) return <Loading />;
 
-  if (error) return "An error has occurred: " + error.message;
+  if (error) return <NoEnter />;
+  
   return (
     <>
       <section
