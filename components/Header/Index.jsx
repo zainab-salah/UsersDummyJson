@@ -4,17 +4,12 @@ import { useEffect, useState } from "react";
 import ThemeToggler from "./ThemeToggler";
 import navData from "./navData";
 import Logo from "@/public/Logo";
-import getcookie from "@/libs/getCookie";
+
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import { useAuth } from "@/app/[locale]/context/AuthContext";
 
 const Header = () => {
-  const userdata = getcookie();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    setUser(userdata);
-  }, [userdata]);
+  const { user, logout } = useAuth();
 
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -45,10 +40,9 @@ const Header = () => {
       setOpenIndex(index);
     }
   };
-  const handleLogOut = () => {
-    Cookies.remove("userdata", { path: "/" });
-
-    router.push("/login");
+  const handleLogout = async (e) => {
+    await logout();
+    router.push("/");
   };
   return (
     <>
@@ -168,7 +162,7 @@ const Header = () => {
                           onClick={navbarToggleHandler}
                         >
                           <button
-                            onClick={handleLogOut}
+                            onClick={handleLogout}
                             className={`flex py-2 text-right text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
                           >
                             Logout
@@ -230,7 +224,7 @@ const Header = () => {
                       My Info
                     </Link>
                     <button
-                      onClick={handleLogOut}
+                      onClick={handleLogout}
                       className="ease-in-up hidden rounded-md bg-primary px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
                     >
                       Logout

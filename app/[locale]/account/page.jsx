@@ -12,27 +12,25 @@ import { Shap3 } from "@/components/Shapes/Shap3";
 import Shap2 from "@/components/Shapes/Shap2";
 import ModalCard from "@/components/Cards/ModalCard";
 import { useRouter } from "next/navigation";
-import getcookie from "@/libs/getCookie";
+import { useAuth } from "../context/AuthContext";
 
 const Account = () => {
-  const userCredentials = getcookie();
-  const id = userCredentials.id;
+  const { user, logout } = useAuth();
+
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["userData"],
     queryFn: () =>
-      fetch(`https://dummyjson.com/users/${id}`).then((res) => res.json()),
+      fetch(`https://dummyjson.com/users/${user.id}`).then((res) => res.json()),
   });
 
   const router = useRouter();
-  if (!userCredentials) {
+  if (!user) {
     router.push("/login");
   }
-  const handleLogout = () => {
-    Cookies.remove("userdata", { path: "/" });
-
-    router.push("/login");
+  const handleLogout = async (e) => {
+    await logout();
+    router.push("/");
   };
-
   if (isPending || isFetching) return <Loading />;
 
   if (error) return "An error has occurred: " + error.message;

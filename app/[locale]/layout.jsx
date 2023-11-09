@@ -25,7 +25,7 @@ async function RootLayout({ children, params: { locale } }) {
         suppressHydrationWarning={true}
       >
         <Providers locale={locale} messages={messages}>
-          {/* <Header /> */}
+          <Header />
           {children}
         </Providers>
       </body>

@@ -5,6 +5,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 import { useEffect, useState } from "react";
+import { AuthContextProvider } from "./context/AuthContext";
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ar" }];
 }
@@ -21,15 +22,21 @@ export default function Providers({ children, locale, messages }) {
   //     return () => clearTimeout(loadingTimer);
   //   }, []);
   return (
-    <NextUIProvider>
-      <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
-        <QueryClientProvider client={queryClient}>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            {/* {isLoading ? <Loading /> : <>{children}</>} */}
-            {children}
-          </NextIntlClientProvider>
-        </QueryClientProvider>
-      </ThemeProvider>
-    </NextUIProvider>
+    <AuthContextProvider>
+      <NextUIProvider>
+        <ThemeProvider
+          attribute="class"
+          enableSystem={false}
+          defaultTheme="dark"
+        >
+          <QueryClientProvider client={queryClient}>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              {/* {isLoading ? <Loading /> : <>{children}</>} */}
+              {children}
+            </NextIntlClientProvider>
+          </QueryClientProvider>
+        </ThemeProvider>
+      </NextUIProvider>
+    </AuthContextProvider>
   );
 }

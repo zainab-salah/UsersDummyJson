@@ -5,12 +5,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { Shap1 } from "@/components/Shapes/Shap1";
-import { login } from "@/libs/login";
+
 import { useRouter } from "next-intl/client";
 import { useMutation } from "@tanstack/react-query";
-import Cookies from "js-cookie";
+
+import { useAuth } from "../context/AuthContext";
+import { useEffect } from "react";
 
 const SigninPage = () => {
+  const { user, login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -25,17 +28,10 @@ const SigninPage = () => {
   });
 
   const router = useRouter();
-  // if (user !== null) {
-  //   router.push("/");
-  // }
+
   const mutation = useMutation({
     mutationFn: login,
-    onSuccess: async (data) => {
-      const userCredentials = {
-        id: data.id,
-        token: data.token,
-      };
-      Cookies.set("userdata", JSON.stringify(userCredentials), { expires: 7 });
+    onSuccess: (data) => {
       reset();
       router.push("/account");
     },
