@@ -24,7 +24,7 @@ function SingleUserDate({ params }) {
     },
     keepPreviousData: true,
   });
-  console.log(data)
+ 
 
   if (isPending || isFetching) return <Loading />;
 
