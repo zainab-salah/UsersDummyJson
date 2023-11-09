@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import {
@@ -14,28 +16,23 @@ import { useMutation } from "@tanstack/react-query";
 import { updateUser } from "@/libs/updateUser";
 
 export default function ModalCard({ user }) {
+  const [data, setData] = useState(user);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      id: user.id,
-      username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      gender: user.gender,
+      id: data.id,
+      username: data.username,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      gender: data.gender,
     },
   });
   const mutation = useMutation({
     mutationFn: updateUser,
-    onSuccess: async () => {
-      reset();
+    onSuccess: async (data) => {
       onClose();
-      console.log("its done" + user);
+      setData(data);
     },
     onError: (error) => {
       console.log(error);

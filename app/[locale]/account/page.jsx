@@ -4,7 +4,6 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import SectionTitle from "@/components/common/SectionTitle";
-import NoEnter from "@/components/common/NoEnter";
 
 import Loading from "../loading";
 
@@ -24,18 +23,19 @@ const Account = () => {
       fetch(`https://dummyjson.com/users/${id}`).then((res) => res.json()),
   });
 
-  if (isPending || isFetching) return <Loading />;
-
-  if (error) return "An error has occurred: " + error.message;
-
   const router = useRouter();
   if (!userCredentials) {
     router.push("/login");
   }
   const handleLogout = () => {
-    Cookies.remove("userData");
+    Cookies.remove("userdata", { path: "/" });
+
     router.push("/login");
   };
+
+  if (isPending || isFetching) return <Loading />;
+
+  if (error) return "An error has occurred: " + error.message;
 
   return (
     <>

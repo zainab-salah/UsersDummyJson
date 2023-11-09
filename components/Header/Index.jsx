@@ -1,17 +1,27 @@
 "use client";
-import Image from "next/image";
 import Link from "next-intl/link";
 import { useEffect, useState } from "react";
 import ThemeToggler from "./ThemeToggler";
 import navData from "./navData";
 import Logo from "@/public/Logo";
+import getcookie from "@/libs/getCookie";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const Header = () => {
+  const userdata = getcookie();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    setUser(userdata);
+  }, [userdata]);
+
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
   };
+  const router = useRouter();
 
   // Sticky Navbar
   const [sticky, setSticky] = useState(false);
@@ -25,7 +35,7 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleStickyNavbar);
   });
-  const user = null;
+
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
   const handleSubmenu = (index) => {
@@ -35,7 +45,11 @@ const Header = () => {
       setOpenIndex(index);
     }
   };
+  const handleLogOut = () => {
+    Cookies.remove("userdata", { path: "/" });
 
+    router.push("/login");
+  };
   return (
     <>
       <header

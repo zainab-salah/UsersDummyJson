@@ -30,9 +30,7 @@ const SigninPage = () => {
   // }
   const mutation = useMutation({
     mutationFn: login,
-
     onSuccess: async (data) => {
-      console.log(data);
       const userCredentials = {
         id: data.id,
         token: data.token,
@@ -47,7 +45,6 @@ const SigninPage = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     mutation.mutate(data);
   };
 
