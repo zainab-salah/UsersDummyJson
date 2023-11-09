@@ -7,10 +7,13 @@ import Loading from "@/app/[locale]/loading";
 import Link from "next/link";
 
 const Hero = () => {
+  const usersApi = process.env.GET_ALL_USERS;
+
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["repoData"],
-    queryFn: () =>
-      fetch("https://dummyjson.com/users").then((res) => res.json()),
+    queryFn: () => fetch(usersApi).then((res) => res.json()),
+    keepPreviousData: true,
+    
   });
 
   if (isPending || isFetching) return <Loading />;

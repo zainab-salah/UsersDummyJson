@@ -8,14 +8,15 @@ import SectionTitle from "@/components/common/SectionTitle";
 import { Shap1 } from "@/components/Shapes/Shap1";
 
 function SingleUserDate({ params }) {
+  const userApi = process.env.GET_SINGLE_USER;
+
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["repoData"],
-    queryFn: () =>
-      fetch(`https://dummyjson.com/users/${params.id}`).then((res) =>
-        res.json()
-      ),
+    queryFn: () => fetch(`${userApi}${params.id}`).then((res) => res.json()),
+    keepPreviousData: true,
+ 
   });
-  console.log(data);
+
   if (isPending || isFetching) return <Loading />;
 
   if (error) return "An error has occurred: " + error.message;
@@ -33,7 +34,7 @@ function SingleUserDate({ params }) {
             width={150}
             height={150}
             className="rounded-full"
-            priority={true}
+       
           />
         </div>
         <SectionTitle

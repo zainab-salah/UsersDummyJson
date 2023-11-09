@@ -15,10 +15,11 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { updateUser } from "@/libs/updateUser";
 
-export default function ModalCard({ user }) {
+export default function ModalCard({ user,setNewUser }) {
+  
   const [data, setData] = useState(user);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       id: data.id,
       username: data.username,
@@ -33,6 +34,7 @@ export default function ModalCard({ user }) {
     onSuccess: async (data) => {
       onClose();
       setData(data);
+      setNewUser(data)
     },
     onError: (error) => {
       console.log(error);
@@ -46,7 +48,8 @@ export default function ModalCard({ user }) {
   return (
     <>
       <button
-        className="ease-in-up  flex items-cUpdate justify-between gap-5 rounded-md bg-primary px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:px-9 lg:px-6 xl:px-9"
+        className="ease-in-up  flex items-cUpdate justify-between gap-5 rounded-md bg-primary px-8 py-3 
+        text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:px-9 lg:px-6 xl:px-9"
         onClick={onOpen}
       >
         Edit my Account
@@ -58,8 +61,8 @@ export default function ModalCard({ user }) {
             strokeLinejoin="round"
             strokeWidth={2}
             viewBox="0 0 24 24"
-            height="1em"
-            width="1em"
+            height="18px"
+                      width="18px"
           >
             <path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
           </svg>
@@ -68,7 +71,7 @@ export default function ModalCard({ user }) {
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        className=" text-dark dark:text-white  bg-primary dark:bg-dark pt-6 rounded-md"
+        className=" text-dark dark:text-white bg-primary dark:bg-dark pt-6 rounded-md"
       >
         <ModalContent>
           {(onClose) => (

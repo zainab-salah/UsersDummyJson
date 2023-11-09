@@ -10,7 +10,6 @@ import { useRouter } from "next-intl/client";
 import { useMutation } from "@tanstack/react-query";
 
 import { useAuth } from "../context/AuthContext";
-import { useEffect } from "react";
 
 const SigninPage = () => {
   const { user, login } = useAuth();
@@ -38,6 +37,7 @@ const SigninPage = () => {
     onError: (error) => {
       console.log(error);
     },
+ 
   });
 
   const onSubmit = async (data) => {
@@ -104,7 +104,11 @@ const SigninPage = () => {
 
                   <div className="mb-6">
                     <button
-                      disabled={mutation.isPending}
+                      disabled={
+                        mutation.isPending ||
+                        mutation.isLoading ||
+                        mutation.isFetching
+                      }
                       type="submit"
                       className=" flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
                     >
