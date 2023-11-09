@@ -8,6 +8,7 @@ import { Shap1 } from "@/components/Shapes/Shap1";
 import { login } from "@/libs/login";
 import { useRouter } from "next-intl/client";
 import { useMutation } from "@tanstack/react-query";
+import Cookies from "js-cookie";
 
 const SigninPage = () => {
   const {
@@ -30,7 +31,13 @@ const SigninPage = () => {
   const mutation = useMutation({
     mutationFn: login,
 
-    onSuccess: async () => {
+    onSuccess: async (data) => {
+      console.log(data);
+      const userCredentials = {
+        id: data.id,
+        token: data.token,
+      };
+      Cookies.set("userdata", JSON.stringify(userCredentials), { expires: 7 });
       reset();
       router.push("/account");
     },
@@ -38,10 +45,10 @@ const SigninPage = () => {
       console.log(error);
     },
   });
-  console.log(mutation);
+
   const onSubmit = async (data) => {
-    mutation.mutate({ username: data.username, password: data.password });
-    console.log(mutation.data);
+    console.log(data);
+    mutation.mutate(data);
   };
 
   return (

@@ -26,7 +26,7 @@ export default function Providers({ children, locale, messages }) {
         <QueryClientProvider client={queryClient}>
           <NextIntlClientProvider locale={locale} messages={messages}>
             {/* {isLoading ? <Loading /> : <>{children}</>} */}
-            <>{children}</>
+            {children}
           </NextIntlClientProvider>
         </QueryClientProvider>
       </ThemeProvider>
