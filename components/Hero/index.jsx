@@ -34,7 +34,7 @@ const Hero = () => {
             <Link
               href={`${user.id}`}
               key={user.id}
-              className="wow fadeInUp  cursor-pointer relative z-10 rounded-md bg-primary/10 p-4 my-5 mx-1 lg:w-1/4 dark:bg-primary/10 "
+              className="wow fadeInUp w-full cursor-pointer relative z-10 rounded-md bg-primary/10 p-4 my-5 mx-1 lg:w-1/4 dark:bg-primary/10 "
               data-wow-delay=".2s"
             >
               <UserCard user={user} />
