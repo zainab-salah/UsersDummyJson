@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import DeleteUserCard from "@/components/Cards/DeleteUserCard";
+import Link from "next/link";
 
 const Account = () => {
   const { user, logout, setUser } = useAuth();
@@ -167,6 +168,24 @@ const Account = () => {
               </div>
 
               <Shap2 />
+            </div>
+          ) : user == null ? (
+            <div className="-mx-4 flex flex-wrap">
+              <div className="w-full px-4">
+                <div className="mx-auto max-w-[500px] rounded-md bg-primary bg-opacity-5 px-6 py-10 dark:bg-dark sm:p-[60px]">
+                  <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
+                    You're Signed Out!
+                  </h3>
+                  <div className="my-6">
+                    <Link
+                      href="/login"
+                      className=" flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
+                    >
+                    Sign in again
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           ) : (
             <Loading />

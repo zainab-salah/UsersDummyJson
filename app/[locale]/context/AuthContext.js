@@ -9,7 +9,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
 
-  
+  console.log(user);
 
   useEffect(() => {
     const userCredentials = Cookies.get("userdata");

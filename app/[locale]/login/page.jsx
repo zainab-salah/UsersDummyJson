@@ -34,15 +34,11 @@ const SigninPage = () => {
     onSuccess: (data) => {
       reset();
       router.push("/account");
-    toast.success('Logged In!')
-
+      toast.success("Logged In!");
     },
     onError: (error) => {
-   
       toast.error(error.message);
-
     },
- 
   });
 
   const onSubmit = async (data) => {
@@ -56,72 +52,90 @@ const SigninPage = () => {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="mx-auto max-w-[500px] rounded-md bg-primary bg-opacity-5 px-6 py-10 dark:bg-dark sm:p-[60px]">
-                <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
-                  Sign In
-                </h3>
+                {user ? (
+                  <>
+                    <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
+                      You're Signed in!
+                    </h3>
+                    <div className="my-6">
+                        <Link
+                         href="/account"
+                        
+                          className=" flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
+                        >
+                     Go to your account settings
+                        </Link>
+                      </div>
+                  </>
+                ) : (
+                  <>
+                    <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
+                      Sign In
+                    </h3>
+                
 
-                <div className="mb-8 flex items-center justify-center">
-                  <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
+                    <div className="mb-8 flex items-center justify-center">
+                      <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
 
-                  <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
-                </div>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="mb-8">
-                    <label
-                      htmlFor="username"
-                      className=" mb-3 block text-sm font-medium text-dark dark:text-white"
-                    >
-                      User Name
-                    </label>
-                    <input
-                      type="text"
-                      name="username"
-                      placeholder="Enter your  User Name"
-                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
-                      {...register("username")}
-                    />
-                    {errors.username && (
-                      <p className="  my-1 text-red">
-                        {errors.username.message}
-                      </p>
-                    )}
-                  </div>
-                  <div className="mb-8">
-                    <label
-                      htmlFor="password"
-                      className=" mb-3 block text-sm font-medium text-dark dark:text-white"
-                    >
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      name="password"
-                      placeholder="Enter your Password"
-                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
-                      {...register("password")}
-                    />
-                    {errors.password && (
-                      <p className="  my-1 text-red">
-                        {errors.password.message}
-                      </p>
-                    )}
-                  </div>
+                      <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
+                    </div>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                      <div className="mb-8">
+                        <label
+                          htmlFor="username"
+                          className=" mb-3 block text-sm font-medium text-dark dark:text-white"
+                        >
+                          User Name
+                        </label>
+                        <input
+                          type="text"
+                          name="username"
+                          placeholder="Enter your  User Name"
+                          className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                          {...register("username")}
+                        />
+                        {errors.username && (
+                          <p className="  my-1 text-red">
+                            {errors.username.message}
+                          </p>
+                        )}
+                      </div>
+                      <div className="mb-8">
+                        <label
+                          htmlFor="password"
+                          className=" mb-3 block text-sm font-medium text-dark dark:text-white"
+                        >
+                          Password
+                        </label>
+                        <input
+                          type="password"
+                          name="password"
+                          placeholder="Enter your Password"
+                          className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                          {...register("password")}
+                        />
+                        {errors.password && (
+                          <p className="  my-1 text-red">
+                            {errors.password.message}
+                          </p>
+                        )}
+                      </div>
 
-                  <div className="mb-6">
-                    <button
-                      disabled={
-                        mutation.isPending ||
-                        mutation.isLoading ||
-                        mutation.isFetching
-                      }
-                      type="submit"
-                      className=" flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
-                    >
-                      {mutation.isPending ? `Loading...` : "Sign In"}
-                    </button>
-                  </div>
-                </form>
-                {/* <p className="text-center text-base font-medium text-body-color">
+                      <div className="mb-6">
+                        <button
+                          disabled={
+                            mutation.isPending ||
+                            mutation.isLoading ||
+                            mutation.isFetching
+                          }
+                          type="submit"
+                          className=" flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
+                        >
+                          {mutation.isPending ? `Loading...` : "Sign In"}
+                        </button>
+                      </div>
+                    </form>
+                    {/* <p className="text-center text-base font-medium text-body-color">
                   Don't Have an account?
                   <Link
                     href="/signup"
@@ -130,6 +144,8 @@ const SigninPage = () => {
                     Create New Account
                   </Link>
                 </p> */}
+                  </>
+                )}
               </div>
             </div>
           </div>
