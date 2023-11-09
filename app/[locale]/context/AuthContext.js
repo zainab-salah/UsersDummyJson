@@ -5,6 +5,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+  const LoginApi = process.env.LOGIN_API;
+
   const [user, setUser] = useState(null);
 
   console.log(user);
@@ -18,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
   const login = async (data) => {
     try {
-      const response = await fetch("https://dummyjson.com/auth/login", {
+      const response = await fetch(LoginApi, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

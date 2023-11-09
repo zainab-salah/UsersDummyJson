@@ -1,6 +1,7 @@
 export async function deleteUser({ id }) {
+  const loginApi = process.env.USER_API;
 
-  const response = await fetch(`https://dummyjson.com/users/${id}`, {
+  const response = await fetch(`${loginApi}${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -8,7 +9,7 @@ export async function deleteUser({ id }) {
   });
 
   if (!response.ok) {
-    throw new Error("Deletion failed");
+    throw new Error("Delete failed");
   }
  
   return response.json();

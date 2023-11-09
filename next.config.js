@@ -5,15 +5,9 @@ const nextConfig = {
   },
   reactStrictMode: true,
   env: {
-    GET_ALL_USERS: process.env.GET_ALL_USERS,
-    GET_SINGLE_USER: process.env.GET_SINGLE_USER,
-    DELETE_USER: process.env.DELETE_USER,
-    UPDATE_USER: process.env.UPDATE_USER,
+    USER_API: process.env.USER_API,
     LOGIN_API: process.env.LOGIN_API,
-    CREATE_USER: process.env.CREATE_USER,
- 
-  }
+  },
 };
 
 module.exports = nextConfig;
- 

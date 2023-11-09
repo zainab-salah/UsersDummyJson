@@ -1,5 +1,7 @@
 export async function updateUser(user) {
-  const response = await fetch(`https://dummyjson.com/users/${user.id}`, {
+  const updateApi = process.env.USER_API;
+
+  const response = await fetch(`${updateApi}${user.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -15,7 +17,7 @@ export async function updateUser(user) {
   });
 
   if (!response.ok) {
-    throw new Error("Login failed");
+    throw new Error("Update failed");
   }
 
   return response.json();

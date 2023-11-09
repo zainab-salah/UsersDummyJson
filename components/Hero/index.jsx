@@ -7,7 +7,7 @@ import Loading from "@/app/[locale]/loading";
 import Link from "next/link";
 
 const Hero = () => {
-  const usersApi = process.env.GET_ALL_USERS;
+  const usersApi = process.env.USER_API;
 
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["repoData"],

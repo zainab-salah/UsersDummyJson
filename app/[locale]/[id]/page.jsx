@@ -8,7 +8,7 @@ import SectionTitle from "@/components/common/SectionTitle";
 import { Shap1 } from "@/components/Shapes/Shap1";
 
 function SingleUserDate({ params }) {
-  const userApi = process.env.GET_SINGLE_USER;
+  const userApi = process.env.USER_API;
 
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["repoData"],
