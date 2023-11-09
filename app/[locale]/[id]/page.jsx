@@ -6,20 +6,29 @@ import Loading from "@/app/[locale]/loading";
 import SectionTitle from "@/components/common/SectionTitle";
 
 import { Shap1 } from "@/components/Shapes/Shap1";
+import NoEnter from "@/components/common/NoEnter";
 
 function SingleUserDate({ params }) {
   const userApi = process.env.USER_API;
 
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["repoData"],
-    queryFn: () => fetch(`${userApi}${params.id}`).then((res) => res.json()),
-    keepPreviousData: true,
+    queryFn: async () => {
+      const response = await fetch(`${userApi}${params.id}`);
+      if (!response.ok) {
  
+        throw new Error(`Failed to fetch data. Status: ${response.status}`);
+      }
+      const jsonData = await response.json();
+      return jsonData;
+    },
+    keepPreviousData: true,
   });
+  console.log(data)
 
   if (isPending || isFetching) return <Loading />;
 
-  if (error) return "An error has occurred: " + error.message;
+  if (error || data==undefined) return <NoEnter />
   return (
     <section
       id="home"

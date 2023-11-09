@@ -37,7 +37,7 @@ export default function ModalCard({ user, setNewUser }) {
       setNewUser(data);
     },
     onError: (error) => {
-      toast.error(error);
+      toast.error(error.message);
     },
   });
 
@@ -71,7 +71,7 @@ export default function ModalCard({ user, setNewUser }) {
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        className=" text-dark dark:text-white bg-primary dark:bg-dark pt-6 rounded-md"
+        className=" text-dark dark:text-white bg-body-color dark:bg-dark pt-6 rounded-md"
       >
         <ModalContent>
           {(onClose) => (
@@ -92,7 +92,7 @@ export default function ModalCard({ user, setNewUser }) {
                       type="text"
                       name="username"
                       placeholder="Update your  User Name"
-                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-dark dark:text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       {...register("username")}
                     />
                   </div>
@@ -107,7 +107,7 @@ export default function ModalCard({ user, setNewUser }) {
                       type="text"
                       name="firstName"
                       placeholder="Update your First Name"
-                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-dark dark:text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       {...register("firstName")}
                     />
                   </div>
@@ -122,7 +122,7 @@ export default function ModalCard({ user, setNewUser }) {
                       type="text"
                       name="lastName"
                       placeholder="Update your Last Name"
-                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-dark dark:text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       {...register("lastName")}
                     />
                   </div>
@@ -137,7 +137,7 @@ export default function ModalCard({ user, setNewUser }) {
                       type="email"
                       name="email"
                       placeholder="Update your Email"
-                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-dark dark:text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       {...register("email")}
                     />
                   </div>
@@ -152,7 +152,7 @@ export default function ModalCard({ user, setNewUser }) {
                       type="text"
                       name="gender"
                       placeholder="Chosse your Gender"
-                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                      className="w-full rounded-md border border-transparent px-6 py-3 text-base text-dark dark:text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       {...register("gender")}
                     >
                       <option value="male">Male</option>
@@ -161,13 +161,14 @@ export default function ModalCard({ user, setNewUser }) {
                   </div>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onPress={onClose}>
+                  <Button color="danger" variant="light" className="border-2  text-base rounded-md border-white text-white" onPress={onClose}>
                     Close
                   </Button>
                   <Button
                     color="primary"
                     type="submit"
-                    className=" flex   rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300
+                    className=" flex   rounded-md dark:bg-primary bg-dark 
+                    px-9 py-4 text-base font-medium text-white transition duration-300
                    ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
                   >
                     {mutation.isPending ? `Loading...` : "Update"}

@@ -3,7 +3,7 @@ import Link from "next/link";
 const NoEnter = () => {
   return (
     <>
-      <section className="relative z-10 pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
+      <section className="relative z-10 pb-16 pt-36 lg:h-screen bg-white dark:bg-black md:pb-20 lg:pb-28 lg:pt-[180px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
@@ -133,17 +133,15 @@ const NoEnter = () => {
                     </defs>
                   </svg>
                 </div>
-                <h3 className="mb-4 text-3xl font-bold text-black dark:text-white sm:text-4xl">
-                  نعتذر منك, هذه الصفحة غير متوفرة
-                </h3>
-                <p className="dr-rtl mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
-                  قم بتسجيل الدخول بحسابك للوصول لهذه الصفحة !
-                </p>
+                {/* <h3 className="mb-4 text-3xl font-bold text-black dark:text-white sm:text-4xl">
+                 Sorry ! page does not exsit
+                </h3> */}
+               
                 <Link
                   href="/"
                   className="rounded-md bg-primary px-8 py-3 text-base font-bold text-white shadow-signUp duration-300 hover:bg-white hover:text-primary md:px-9 lg:px-8 xl:px-9"
                 >
-                  العودة للصفحة الرئيسية
+        Back to Home Page
                 </Link>
               </div>
             </div>

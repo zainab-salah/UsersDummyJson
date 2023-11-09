@@ -38,7 +38,8 @@ const SigninPage = () => {
 
     },
     onError: (error) => {
-      toast.error(error);
+      console.log(error)
+      toast.error(error.message);
 
     },
  
@@ -120,7 +121,7 @@ const SigninPage = () => {
                     </button>
                   </div>
                 </form>
-                <p className="text-center text-base font-medium text-body-color">
+                {/* <p className="text-center text-base font-medium text-body-color">
                   Don't Have an account?
                   <Link
                     href="/signup"
@@ -128,7 +129,7 @@ const SigninPage = () => {
                   >
                     Create New Account
                   </Link>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

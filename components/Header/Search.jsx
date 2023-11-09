@@ -10,20 +10,17 @@ import Link from "next/link";
 
 const Search = () => {
   const [searchQ, setSearchQ] = useState("");
+  const searchApi = process.env.SEARCH_API;
 
-  const { isPending, error, data, isFetching } = useQuery({
+  const { error, data } = useQuery({
     queryKey: ["search", searchQ],
-    queryFn: () =>
-      fetch(`https://dummyjson.com/users/search?q=${searchQ}`).then((res) =>
-        res.json()
-      ),
+    queryFn: () => fetch(`${searchApi}${searchQ}`).then((res) => res.json()),
   });
   const handleInputChange = (event) => {
     setSearchQ(event.target.value);
   };
-  console.log(data);
 
-  if (error) return toast.error(error);
+  if (error) return toast.error(error.message);
 
   return (
     <>

@@ -32,7 +32,8 @@ export const AuthContextProvider = ({ children }) => {
       });
 
       if (!response.ok) {
-        throw new Error("Login failed");
+        throw new Error("Please Check Your Credentials");
+
       }
 
       const userData = await response.json();

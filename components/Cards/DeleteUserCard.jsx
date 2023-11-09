@@ -28,7 +28,7 @@ export default function DeleteUserCard({ user,logout }) {
       toast.success(`${data.firstName} Deleted Successfully.`);
     },
     onError: (error) => {
-      toast.error(error);
+      toast.error(error.message);
     },
   });
 
@@ -65,7 +65,7 @@ export default function DeleteUserCard({ user,logout }) {
             <>
               <ModalHeader backdrop="blur" className="flex gap-1">
                 Delete User
-                <span className="text-primary ">{user.firstName} ?</span>
+                <span className="text-white dark:text-primary">{user.firstName} ?</span>
               </ModalHeader>
               <ModalBody></ModalBody>
               <ModalFooter>
