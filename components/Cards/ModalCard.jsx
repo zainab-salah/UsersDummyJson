@@ -14,9 +14,9 @@ import {
 } from "@nextui-org/react";
 import { useMutation } from "@tanstack/react-query";
 import { updateUser } from "@/libs/updateUser";
+import { toast } from "react-toastify";
 
-export default function ModalCard({ user,setNewUser }) {
-  
+export default function ModalCard({ user, setNewUser }) {
   const [data, setData] = useState(user);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { register, handleSubmit } = useForm({
@@ -34,10 +34,10 @@ export default function ModalCard({ user,setNewUser }) {
     onSuccess: async (data) => {
       onClose();
       setData(data);
-      setNewUser(data)
+      setNewUser(data);
     },
     onError: (error) => {
-      console.log(error);
+      toast.error(error);
     },
   });
 
@@ -62,7 +62,7 @@ export default function ModalCard({ user,setNewUser }) {
             strokeWidth={2}
             viewBox="0 0 24 24"
             height="18px"
-                      width="18px"
+            width="18px"
           >
             <path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
           </svg>

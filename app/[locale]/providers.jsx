@@ -5,6 +5,8 @@ import { NextUIProvider } from "@nextui-org/react";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 import { AuthContextProvider } from "./context/AuthContext";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ar" }];
 }
@@ -28,6 +30,18 @@ export default function Providers({ children, locale, messages }) {
         >
           <QueryClientProvider client={queryClient}>
             <NextIntlClientProvider locale={locale} messages={messages}>
+            <ToastContainer
+            position="top-center"
+            autoClose={1000}
+            hideProgressBar
+            newestOnTop={false}
+        
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+            />
               {children}
             </NextIntlClientProvider>
           </QueryClientProvider>

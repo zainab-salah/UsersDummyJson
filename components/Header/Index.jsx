@@ -7,6 +7,7 @@ import Logo from "@/public/Logo";
 
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/[locale]/context/AuthContext";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const { user, logout } = useAuth();
@@ -43,6 +44,7 @@ const Header = () => {
   const handleLogout = async (e) => {
     await logout();
     router.push("/");
+    toast.success("Logged Out!");
   };
   return (
     <>

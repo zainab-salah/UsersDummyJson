@@ -10,6 +10,7 @@ import { useRouter } from "next-intl/client";
 import { useMutation } from "@tanstack/react-query";
 
 import { useAuth } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const SigninPage = () => {
   const { user, login } = useAuth();
@@ -33,9 +34,12 @@ const SigninPage = () => {
     onSuccess: (data) => {
       reset();
       router.push("/account");
+    toast.success('Logged In!')
+
     },
     onError: (error) => {
-      console.log(error);
+      toast.error(error);
+
     },
  
   });

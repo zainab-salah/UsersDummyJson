@@ -1,4 +1,5 @@
-export async function deleteUser(id) {
+export async function deleteUser({ id }) {
+
   const response = await fetch(`https://dummyjson.com/users/${id}`, {
     method: "DELETE",
     headers: {
@@ -7,7 +8,8 @@ export async function deleteUser(id) {
   });
 
   if (!response.ok) {
-    throw new Error("Login failed");
+    throw new Error("Deletion failed");
   }
+ 
   return response.json();
 }

@@ -10,6 +10,8 @@ import Shap2 from "@/components/Shapes/Shap2";
 import ModalCard from "@/components/Cards/ModalCard";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
+import { toast } from "react-toastify";
+import DeleteUserCard from "@/components/Cards/DeleteUserCard";
 
 const Account = () => {
   const { user, logout, setUser } = useAuth();
@@ -26,6 +28,7 @@ const Account = () => {
   const handleLogout = async (e) => {
     await logout();
     router.push("/");
+    toast.success("Logged Out!");
   };
 
   return (
@@ -63,25 +66,8 @@ const Account = () => {
                     className="relative "
                   />
                 </div>
-                <button
-                  className="ease-in-up  flex items-cUpdate justify-between gap-5
-                   rounded-md bg-red/70 px-8 py-3 
-        text-base font-bold text-white transition
-         duration-300 hover:bg-opacity-90 hover:shadow-signUp md:px-9 lg:px-6 xl:px-9"
-                >
-                  Remove Account
-                  <span>
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      height="24px"
-                      width="24px"
-                      className="  text-white"
-                    >
-                      <path d="M20.37 8.91l-1 1.73-12.13-7 1-1.73 3.04 1.75 1.36-.37 4.33 2.5.37 1.37 3.03 1.75M6 19V7h5.07L18 11v8a2 2 0 01-2 2H8a2 2 0 01-2-2z" />
-                    </svg>
-                  </span>
-                </button>
+
+                <DeleteUserCard user={user} logout={logout} />
                 <button
                   onClick={handleLogout}
                   className="  rounded-md border-2
