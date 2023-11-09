@@ -185,17 +185,7 @@ const Header = () => {
                             Login
                           </Link>
                         </li>
-                        <li
-                          className="group relative block lg:hidden"
-                          onClick={navbarToggleHandler}
-                        >
-                          <Link
-                            href="/signup"
-                            className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
-                          >
-                            Create New User
-                          </Link>
-                        </li>
+                       
                       </>
                     )}
                   </ul>
@@ -212,12 +202,7 @@ const Header = () => {
                     >
                       Login
                     </Link>
-                    <Link
-                      href="/signup"
-                      className="ease-in-up hidden rounded-md bg-primary px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
-                    >
-                      Create New User
-                    </Link>
+                   
                   </div>
                 ) : (
                   <div className="flex items-center justify-end pr-16 lg:pr-0">
