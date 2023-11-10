@@ -83,7 +83,7 @@ const Header = () => {
       >
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">
-            <div className="w-60 max-w-full px-4 xl:mr-12">
+            <div className="w-36 sm:w-60 max-w-full px-4 xl:mr-12">
               <Link
                 href="/"
                 className={`header-logo block w-full ${
@@ -94,14 +94,13 @@ const Header = () => {
                 <Logo classes="hidden w-full text-white  dark:block " />
               </Link>
             </div>
-            <div className="flex w-full items-center justify-between px-4">
+            <div className="flex w-full items-center justify-between ">
               <div>
                 <button
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
                   aria-label="Mobile Menu"
-                  className="absolute right-4 top-1/2 block translate-y-[-50%] 
-                  rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+                  className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 md:hidden"
                 >
                   <span
                     className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
@@ -220,7 +219,7 @@ const Header = () => {
 
               <div className="flex items-center justify-between">
                 {user === null ? (
-                  <div className="flex items-center justify-end pr-16 lg:pr-0">
+                  <div className="flex items-center justify-center lg:pr-0">
                     <Link
                       href="/login"
                       className="hidden px-7 py-3 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"

@@ -19,7 +19,7 @@ async function RootLayout({ children, params: { locale } }) {
     <html lang={locale} suppressHydrationWarning>
       <Head />
       <body
-        className={`${inter.className}   dark:bg-black  `}
+        className={`${inter.className} dark:bg-black`}
         suppressHydrationWarning={true}
       >
         <Providers locale={locale} messages={messages}>

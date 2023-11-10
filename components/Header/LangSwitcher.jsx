@@ -26,14 +26,17 @@ export default function LocaleSwitcher() {
       radius="sm"
       key="sm"
       placeholder={t("locale", { locale: locale })}
-      className={`max-w-xs ${rtl} lg:mr-5`}
+      className={`w-28 mr-20 md:mr-6 max-w-md !bg-transparent ${rtl} lg:mr-5`}
       defaultValue={locale}
       disabled={isPending}
       onChange={onSelectChange}
       color="default"
+      classNames={{
+       heading:"bg-transparent"
+      }}
     >
       {["en", "ar"].map((cur) => (
-        <SelectItem key={cur} value={cur}>
+        <SelectItem key={cur} value={cur} className="w-28 ">
           {t("locale", { locale: cur })}
         </SelectItem>
       ))}
