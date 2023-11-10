@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Name : Dummy Users
+![image](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/5417be84-213a-4741-bbbb-01e140b24a1c)
 
-## Getting Started
+## Description
 
-First, run the development server:
+This project is a Next.js application built with Tailwind CSS and Next UI. It utilizes the [DummyJSON API](https://dummyjson.com/docs/auth) to fetch and display users with support for dynamic routing when viewing a single user. The project supports two languages, English (EN) and Arabic (AR), using Next.js internationalization (Next Intel). User authentication is implemented using Cookie.js and React Context to manage states. The application allows users to perform actions such as login, account removal, info editing, and viewing a list of users or a specific user.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Authentication:** User authentication is handled using Cookie.js and React Context.
+![screencapture-users-dummy-json-vercel-app-account-2023-11-10-21_40_06](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/f8804684-b07f-4f86-a7da-9fbc0a31b30b)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Dynamic Routing:** The application supports dynamic routing for displaying single users.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Multilingual Support:** The project supports both English (EN) and Arabic (AR) languages using Next Intel.
+![image](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/d0fb9d56-63cf-4323-b280-f7a71e7fbd97)
 
-## Learn More
+- **Form Validation:** Forms in the project incorporate form validation messages using React Form Hook.
+![screencapture-users-dummy-json-vercel-app-login-2023-11-10-21_32_12](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/50cbeee0-acc5-409e-8ac1-99e67c4c8f61)
 
-To learn more about Next.js, take a look at the following resources:
+- **User Actions:** Users can perform actions such as logging in, removing their account, editing information, and viewing a list of users or a specific user.
+![image](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/3da122ab-e430-4b83-965f-d1b6a3d66c6b)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Search Functionality:** The project includes a user search feature.
+![image](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/266f0538-2d1d-49ce-8948-e39ae36002a5)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Dark and Light Theme Switcher:** Users can toggle between dark and light themes using Next.js theme capabilities.
 
-## Deploy on Vercel
+- **Fetch Management:** All data fetching is handled using React Query for efficient queries and mutations.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/your-repository.git
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+Visit [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+
+## Credits
+
+- This project was built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), and [Next UI](https://example-link-to-next-ui-docs).
+
+- Data is fetched from [DummyJSON API](https://dummyjson.com/docs/auth).
+
+- Authentication is handled using [Cookie.js](https://example-link-to-cookie-js-docs).
+
+- Internationalization is implemented using [Next Intel](https://example-link-to-next-intel-docs).
+
+- Form validation is powered by [React Hook Form](https://react-hook-form.com/).
+
+- Data fetching is managed with [React Query](https://react-query.tanstack.com/).
+
+
