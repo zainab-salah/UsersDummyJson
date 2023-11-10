@@ -18,11 +18,13 @@ const SigninPage = () => {
   const t = useTranslations(["login"]);
   const locale = useLocale();
   const rtl = locale == "ar" ? "rtl" : "";
-  const schema = yup.object({
-    username: yup.string().required("usernameReq"),
 
-    password: yup.string().required("passReq"),
+  const schema = yup.object({
+    username: yup.string().required(t("usernameReq")),
+
+    password: yup.string().required(t("passReq")),
   });
+
   const {
     register,
     handleSubmit,
