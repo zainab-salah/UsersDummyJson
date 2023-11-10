@@ -8,11 +8,12 @@ import { Shap3 } from "@/components/Shapes/Shap3";
 
 import Shap2 from "@/components/Shapes/Shap2";
 import ModalCard from "@/components/Cards/ModalCard";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
+
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import DeleteUserCard from "@/components/Cards/DeleteUserCard";
-import Link from "next/link";
+import Link from "next-intl/link";
 import { useLocale, useTranslations } from "next-intl";
 
 const Account = () => {

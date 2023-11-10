@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { toast } from "react-toastify";
-import Link from "next/link";
+import Link from "next-intl/link";
 import { useLocale, useTranslations } from "next-intl";
 
 const Search = () => {
@@ -15,10 +15,12 @@ const Search = () => {
   const t = useTranslations("NavItems");
   const locale = useLocale();
   const rtl = locale == "ar" ? "rtl" : "";
+
   const { error, data } = useQuery({
     queryKey: ["search", searchQ],
     queryFn: () => fetch(`${searchApi}${searchQ}`).then((res) => res.json()),
   });
+
   const handleInputChange = (event) => {
     setSearchQ(event.target.value);
   };
@@ -37,7 +39,7 @@ const Search = () => {
         >
           {(user) => (
             <AutocompleteItem key={user.id} textValue={user.firstName}>
-              <Link href={`${user.id}`}>
+              <Link href={`/${user.id}`}>
                 <div className="flex gap-2 items-center">
                   <Avatar
                     alt={user.firstName}

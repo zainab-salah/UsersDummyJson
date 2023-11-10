@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import UserCard from "../Cards/UserCard";
 import SectionTitle from "../common/SectionTitle";
 import Loading from "@/app/[locale]/loading";
-import Link from "next/link";
+import Link from "next-intl/link";
 import NoEnter from "../common/NoEnter";
 import SkeletonCard from "../Cards/SkeletonCard";
 import { useTranslations } from "next-intl";

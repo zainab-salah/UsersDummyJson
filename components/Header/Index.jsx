@@ -5,7 +5,8 @@ import ThemeToggler from "./ThemeToggler";
 
 import Logo from "@/public/Logo";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
+
 import { useAuth } from "@/app/[locale]/context/AuthContext";
 import { toast } from "react-toastify";
 import Search from "./Search";
