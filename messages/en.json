@@ -14,7 +14,7 @@
     "title": "Delete User",
     "cancel": "Cancel",
     "delete": "Delete",
-    "deleteing": "Deleting..."
+    "deleting": "Deleting..."
   },
   "EditCard": {
     "editAccount": "Edit my Account",
