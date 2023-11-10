@@ -100,7 +100,8 @@ const Header = () => {
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
                   aria-label="Mobile Menu"
-                  className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+                  className="absolute right-4 top-1/2 block translate-y-[-50%] 
+                  rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
                 >
                   <span
                     className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
@@ -224,8 +225,7 @@ const Header = () => {
                       href="/login"
                       className="hidden px-7 py-3 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
                     >
-                                                  {t("login")}
-
+                      {t("login")}
                     </Link>
                   </div>
                 ) : (
@@ -245,13 +245,12 @@ const Header = () => {
                       onClick={handleLogout}
                       className="ease-in-up hidden rounded-md bg-primary px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
                     >
-                                                  {t("logout")}
-
+                      {t("logout")}
                     </button>
                   </div>
                 )}
-                <LocaleSwitcher />
                 <ThemeToggler />
+                <LocaleSwitcher />
               </div>
             </div>
           </div>
