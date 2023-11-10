@@ -6,21 +6,20 @@ import SectionTitle from "../common/SectionTitle";
 import Loading from "@/app/[locale]/loading";
 import Link from "next/link";
 import NoEnter from "../common/NoEnter";
+import SkeletonCard from "../Cards/SkeletonCard";
+import { useTranslations } from "next-intl";
 
 const Hero = () => {
   const usersApi = process.env.USER_API;
-
+  const t = useTranslations("HomePage");
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["repoData"],
     queryFn: () => fetch(usersApi).then((res) => res.json()),
     keepPreviousData: true,
-    
   });
 
-  if (isPending || isFetching) return <Loading />;
-
   if (error) return <NoEnter />;
-  
+
   return (
     <>
       <section
@@ -28,18 +27,20 @@ const Hero = () => {
         className="relative z-10 overflow-hidden pb-16 pt-[120px] md:pb-[120px]
          md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
       >
-        <SectionTitle title="All Users" center />
+        <SectionTitle title={t("h1")} center />
         <div className="container flex items-center lg:justify-between justify-center flex-wrap">
-          {data.users?.map((user) => (
-            <Link
-              href={`${user.id}`}
-              key={user.id}
-              className="wow fadeInUp w-full cursor-pointer relative z-10 rounded-md bg-primary/10 p-4 my-5 mx-1 lg:w-1/4 dark:bg-primary/10 "
-              data-wow-delay=".2s"
-            >
-              <UserCard user={user} />
-            </Link>
-          ))}
+          {isPending || isFetching
+            ? [...Array(5)].map((_, index) => <SkeletonCard key={index} />)
+            : data.users?.map((user) => (
+                <Link
+                  href={`${user.id}`}
+                  key={user.id}
+                  className="wow fadeInUp w-full cursor-pointer relative z-10 rounded-md bg-primary/10 p-4 my-5 mx-1 lg:w-1/4 dark:bg-primary/10"
+                  data-wow-delay=".2s"
+                >
+                  <UserCard user={user} />
+                </Link>
+              ))}
         </div>
 
         <div className="absolute right-0 top-0 z-[-1] opacity-30 lg:opacity-100">

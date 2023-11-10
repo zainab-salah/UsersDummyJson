@@ -1,3 +1,79 @@
 {
-  "HomePage": "Hello"
+  "HomePage": {
+    "h1": "جميع المستخدمين"
+  },
+  "NavItems": {
+    "home": "الرئيسية",
+    "myInfo": "معلوماتي",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "search": "البحث"
+  },
+  "DeleteCard": {
+    "removeAccount": "إزالة الحساب",
+    "title": "حذف المستخدم",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "deleting": "جار الحذف..."
+  },
+  "EditCard": {
+    "editAccount": "تعديل حسابي",
+    "title": "تعديل المعلومات الخاصة بك",
+    "cancel": "إلغاء",
+    "update": "تحديث",
+    "updating": "جار التحديث...",
+    "username": "اسم المستخدم",
+    "fname": "الاسم الاول",
+    "lname": "الكنية",
+    "email": "البريد الإلكتروني",
+    "gender": "الجنس",
+    "male": "ذكر",
+    "female": "أنثى",
+    "udateYour": "حدث"
+  },
+  "UserData": {
+    "username": "اسم المستخدم",
+    "fname": "الاسم الاول",
+    "lname": "الكنية",
+    "email": "البريد الإلكتروني",
+    "gender": "الجنس",
+    "male": "ذكر",
+    "female": "أنثى",
+    "desc": "معلومات المستخدم"
+  },
+  "login": {
+    "urSignedIn": "لقد قمت بتسجيل الدخول!",
+    "GoToSettings": "انتقل إلى إعدادات حسابك",
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "signIn": "تسجيل الدخول",
+    "EnterYour": "أدخل",
+    "signLoad": "جار التحميل...",
+    "usernameReq": "اسم المستخدم مطلوب!",
+    "passReq": "كلمة المرور مطلوبة!",
+    "successMeg": "تم تسجيل الدخول بنجاح!"
+  },
+  "Account": {
+    "successMeg": "تم تسجيل الخروج!",
+    "title": "اعدادت الحساب",
+    "desc": "مرحبًا بك في إعدادات حسابك",
+    "yourInfo": "معلوماتك",
+    "logout": "تسجيل الخروج",
+    "username": "اسم المستخدم",
+    "fname": "الاسم الأول",
+    "lname": "الاسم الأخير",
+    "email": "البريد الإلكتروني",
+    "gender": "الجنس",
+    "male": "ذكر",
+    "female": "أنثى",
+    "uRsignedOut": "انت غير مسجل!",
+    "signInAgain": "قم بتسجيل الدخول."
+  },
+  "Common": {
+    "back": "العودة للصفحة الرئيسية"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, ar {العربية} en {الانكليزية} other {غير معرف}}"
+  }
 }

@@ -7,23 +7,24 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  
 } from "@nextui-org/react";
 import { useMutation } from "@tanstack/react-query";
 import { deleteUser } from "@/libs/deleteUser";
 import { toast } from "react-toastify";
 import { useRouter } from "next-intl/client";
+import { useLocale, useTranslations } from "next-intl";
 
-export default function DeleteUserCard({ user,logout }) {
+export default function DeleteUserCard({ user, logout }) {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const router = useRouter();
-
+  const t = useTranslations("DeleteCard");
+  const locale = useLocale();
+  const rtl = locale == "ar" ? "rtl" : "";
   const mutation = useMutation({
     mutationFn: deleteUser,
     onSuccess: async (data) => {
-        
-        await logout();
-        onClose();
+      await logout();
+      onClose();
       router.push("/");
       toast.success(`${data.firstName} Deleted Successfully.`);
     },
@@ -42,7 +43,8 @@ export default function DeleteUserCard({ user,logout }) {
         onClick={onOpen}
         className="ease-in-up flex items-center justify-between gap-5 rounded-md bg-red/70 px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:px-9 lg:px-6 xl:px-9"
       >
-        Remove Account
+        {t("removeAccount")}
+
         <span>
           <svg
             viewBox="0 0 24 24"
@@ -58,14 +60,17 @@ export default function DeleteUserCard({ user,logout }) {
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        className="text-dark dark:text-white bg-primary dark:bg-dark pt-6 rounded-md"
+        className={` ${rtl}  text-white bg-primary dark:bg-dark pt-6 rounded-md`}
       >
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader backdrop="blur" className="flex gap-1">
-                Delete User
-                <span className="text-white dark:text-primary">{user.firstName} ?</span>
+                {t("title")}
+
+                <span className="text-white dark:text-primary">
+                  {user.firstName} ?
+                </span>
               </ModalHeader>
               <ModalBody></ModalBody>
               <ModalFooter>
@@ -73,7 +78,7 @@ export default function DeleteUserCard({ user,logout }) {
                   className="border-2 border-primary rounded-md bg-transparent text-primary"
                   onPress={onClose}
                 >
-                  Cancel
+                  {t("cancel")}
                 </Button>
                 <Button
                   color="danger"
@@ -81,7 +86,7 @@ export default function DeleteUserCard({ user,logout }) {
                   onClick={handleDeleteUser}
                   className="flex rounded-md px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:shadow-signUp"
                 >
-                  {mutation.isPending ? `Deleting...` : "Delete"}
+                  {mutation.isPending ? t("deleting") : t("delete")}
                 </Button>
               </ModalFooter>
             </>

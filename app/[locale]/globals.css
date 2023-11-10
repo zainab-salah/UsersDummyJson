@@ -17,3 +17,6 @@
     @apply opacity-70;
   }
 }
+.rtl{
+  direction: rtl !important;
+}

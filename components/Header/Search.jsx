@@ -7,11 +7,14 @@ import { useQuery } from "@tanstack/react-query";
 
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 
 const Search = () => {
   const [searchQ, setSearchQ] = useState("");
   const searchApi = process.env.SEARCH_API;
-
+  const t = useTranslations("NavItems");
+  const locale = useLocale();
+  const rtl = locale == "ar" ? "rtl" : "";
   const { error, data } = useQuery({
     queryKey: ["search", searchQ],
     queryFn: () => fetch(`${searchApi}${searchQ}`).then((res) => res.json()),
@@ -29,8 +32,8 @@ const Search = () => {
           onChange={handleInputChange}
           defaultItems={data.users}
           variant="bordered"
-          placeholder="Search a user"
-          className="max-w-xs"
+          placeholder={t("search")}
+          className={`max-w-xs ${rtl}`}
         >
           {(user) => (
             <AutocompleteItem key={user.id} textValue={user.firstName}>

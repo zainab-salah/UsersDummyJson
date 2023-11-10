@@ -11,9 +11,18 @@ import { useMutation } from "@tanstack/react-query";
 
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import { useLocale, useTranslations } from "next-intl";
 
 const SigninPage = () => {
   const { user, login } = useAuth();
+  const t = useTranslations(["login"]);
+  const locale = useLocale();
+  const rtl = locale == "ar" ? "rtl" : "";
+  const schema = yup.object({
+    username: yup.string().required("usernameReq"),
+
+    password: yup.string().required("passReq"),
+  });
   const {
     register,
     handleSubmit,
@@ -34,7 +43,7 @@ const SigninPage = () => {
     onSuccess: (data) => {
       reset();
       router.push("/account");
-      toast.success("Logged In!");
+      toast.success(`${t("successMeg")}`);
     },
     onError: (error) => {
       toast.error(error.message);
@@ -45,34 +54,35 @@ const SigninPage = () => {
     mutation.mutate(data);
   };
 
+ 
   return (
     <>
-      <section className="relative z-10 overflow-hidden pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
+      <section className="relative lg:h-screen  z-10 overflow-hidden pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
-              <div className="mx-auto max-w-[500px] rounded-md bg-primary bg-opacity-5 px-6 py-10 dark:bg-dark sm:p-[60px]">
+              <div
+                className={`${rtl} mx-auto max-w-[500px] rounded-md bg-primary bg-opacity-5 px-6 py-10 dark:bg-dark sm:p-[60px]`}
+              >
                 {user ? (
                   <>
                     <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
-                      You're Signed in!
+                      {t("urSignedIn")}
                     </h3>
                     <div className="my-6">
-                        <Link
-                         href="/account"
-                        
-                          className=" flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
-                        >
-                     Go to your account settings
-                        </Link>
-                      </div>
+                      <Link
+                        href="/account"
+                        className=" flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
+                      >
+                        {t("GoToSettings")}
+                      </Link>
+                    </div>
                   </>
                 ) : (
                   <>
                     <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
-                      Sign In
+                      {t("signIn")}
                     </h3>
-                
 
                     <div className="mb-8 flex items-center justify-center">
                       <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
@@ -85,12 +95,12 @@ const SigninPage = () => {
                           htmlFor="username"
                           className=" mb-3 block text-sm font-medium text-dark dark:text-white"
                         >
-                          User Name
+                          {t("username")}
                         </label>
                         <input
                           type="text"
                           name="username"
-                          placeholder="Enter your  User Name"
+                          placeholder={`${t("EnterYour")} ${t("username")}`}
                           className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                           {...register("username")}
                         />
@@ -105,12 +115,12 @@ const SigninPage = () => {
                           htmlFor="password"
                           className=" mb-3 block text-sm font-medium text-dark dark:text-white"
                         >
-                          Password
+                          {t("password")}
                         </label>
                         <input
                           type="password"
                           name="password"
-                          placeholder="Enter your Password"
+                          placeholder={`${t("EnterYour")} ${t("password")}`}
                           className="w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                           {...register("password")}
                         />
@@ -131,7 +141,7 @@ const SigninPage = () => {
                           type="submit"
                           className=" flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
                         >
-                          {mutation.isPending ? `Loading...` : "Sign In"}
+                          {mutation.isPending ? t("signLoad") : t("signIn")}
                         </button>
                       </div>
                     </form>
@@ -157,16 +167,3 @@ const SigninPage = () => {
 };
 
 export default SigninPage;
-
-// const schema = yup.object({
-//   email: yup
-//     .string()
-//     .required("البريد الالكتروني مطلوب!")
-//     .email("الرجاء ادخل بريد الكتروني صالح"),
-//   password: yup.string().required("كلمة المرور مطلوبة!"),
-// });
-const schema = yup.object({
-  username: yup.string().required("User name is required!"),
-
-  password: yup.string().required("Password is required!"),
-});

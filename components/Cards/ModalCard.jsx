@@ -15,6 +15,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { updateUser } from "@/libs/updateUser";
 import { toast } from "react-toastify";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function ModalCard({ user, setNewUser }) {
   const [data, setData] = useState(user);
@@ -29,6 +30,9 @@ export default function ModalCard({ user, setNewUser }) {
       gender: data.gender,
     },
   });
+  const t = useTranslations(["EditCard"]);
+  const locale = useLocale();
+  const rtl = locale == "ar" ? "rtl" : "";
   const mutation = useMutation({
     mutationFn: updateUser,
     onSuccess: async (data) => {
@@ -52,7 +56,7 @@ export default function ModalCard({ user, setNewUser }) {
         text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:px-9 lg:px-6 xl:px-9"
         onClick={onOpen}
       >
-        Edit my Account
+        {t("editAccount")}
         <span>
           <svg
             fill="none"
@@ -71,13 +75,13 @@ export default function ModalCard({ user, setNewUser }) {
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        className=" text-dark dark:text-white bg-body-color dark:bg-dark pt-6 rounded-md"
+        className={`${rtl} text-dark dark:text-white  bg-body-color dark:bg-dark pt-6 rounded-md`}
       >
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader backdrop="blur" className="flex flex-col gap-1">
-                Edit your info
+                {t("title")}
               </ModalHeader>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <ModalBody>
@@ -86,12 +90,12 @@ export default function ModalCard({ user, setNewUser }) {
                       htmlFor="username"
                       className=" mb-3 block text-sm font-medium text-dark dark:text-white"
                     >
-                      User Name
+                      {t("username")}
                     </label>
                     <input
                       type="text"
                       name="username"
-                      placeholder="Update your  User Name"
+                      placeholder={`${t("udateYour")} ${t("username")}`}
                       className="w-full rounded-md border border-transparent px-6 py-3 text-base text-dark dark:text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       {...register("username")}
                     />
@@ -101,12 +105,12 @@ export default function ModalCard({ user, setNewUser }) {
                       htmlFor="firstName"
                       className=" mb-3 block text-sm font-medium text-dark dark:text-white"
                     >
-                      First Name
+                      {t("fname")}
                     </label>
                     <input
                       type="text"
                       name="firstName"
-                      placeholder="Update your First Name"
+                      placeholder={`${t("udateYour")} ${t("fname")}`}
                       className="w-full rounded-md border border-transparent px-6 py-3 text-base text-dark dark:text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       {...register("firstName")}
                     />
@@ -116,12 +120,12 @@ export default function ModalCard({ user, setNewUser }) {
                       htmlFor="lastName"
                       className=" mb-3 block text-sm font-medium text-dark dark:text-white"
                     >
-                      Last Name
+                      {t("lname")}
                     </label>
                     <input
                       type="text"
                       name="lastName"
-                      placeholder="Update your Last Name"
+                      placeholder={`${t("udateYour")} ${t("lname")}`}
                       className="w-full rounded-md border border-transparent px-6 py-3 text-base text-dark dark:text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       {...register("lastName")}
                     />
@@ -131,12 +135,12 @@ export default function ModalCard({ user, setNewUser }) {
                       htmlFor="email"
                       className=" mb-3 block text-sm font-medium text-dark dark:text-white"
                     >
-                      Email
+                      {t("email")}
                     </label>
                     <input
                       type="email"
                       name="email"
-                      placeholder="Update your Email"
+                      placeholder={`${t("udateYour")} ${t("email")}`}
                       className="w-full rounded-md border border-transparent px-6 py-3 text-base text-dark dark:text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       {...register("email")}
                     />
@@ -146,23 +150,28 @@ export default function ModalCard({ user, setNewUser }) {
                       htmlFor="gender"
                       className=" mb-3 block text-sm font-medium text-dark dark:text-white"
                     >
-                      Gender
+                      {t("gender")}
                     </label>
                     <select
                       type="text"
                       name="gender"
-                      placeholder="Chosse your Gender"
+                      placeholder={`${t("udateYour")} ${t("gender")}`}
                       className="w-full rounded-md border border-transparent px-6 py-3 text-base text-dark dark:text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       {...register("gender")}
                     >
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
+                      <option value="male">{t("male")}</option>
+                      <option value="female">{t("female")}</option>
                     </select>
                   </div>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" className="border-2  text-base rounded-md border-white text-white" onPress={onClose}>
-                    Close
+                  <Button
+                    color="danger"
+                    variant="light"
+                    className="border-2  text-base rounded-md border-white text-white"
+                    onPress={onClose}
+                  >
+                    {t("cancel")}
                   </Button>
                   <Button
                     color="primary"
@@ -171,7 +180,7 @@ export default function ModalCard({ user, setNewUser }) {
                     px-9 py-4 text-base font-medium text-white transition duration-300
                    ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
                   >
-                    {mutation.isPending ? `Loading...` : "Update"}
+                    {mutation.isPending ? t("updating") : t("update")}
                   </Button>
                 </ModalFooter>
               </form>

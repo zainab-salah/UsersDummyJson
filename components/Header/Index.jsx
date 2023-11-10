@@ -2,17 +2,42 @@
 import Link from "next-intl/link";
 import { useEffect, useState } from "react";
 import ThemeToggler from "./ThemeToggler";
-import navData from "./navData";
+
 import Logo from "@/public/Logo";
 
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/[locale]/context/AuthContext";
 import { toast } from "react-toastify";
 import Search from "./Search";
+import { Avatar } from "@nextui-org/react";
+import LocaleSwitcher from "./LangSwitcher";
+import { useTranslations } from "next-intl";
 
 const Header = () => {
   const { user, logout } = useAuth();
+  const t = useTranslations("NavItems");
+  const menuData = [
+    {
+      id: 1,
+      title: t("home"),
+      path: "/",
+      newTab: false,
+    },
+    // {
+    //   id: 2,
+    //   title: "About",
+    //   newTab: false,
+    //   submenu: [
+    //     {
+    //       id: 11,
+    //       title: "users",
+    //       path: "/users",
+    //       newTab: false,
+    //     },
 
+    //   ],
+    // },
+  ];
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
@@ -102,7 +127,7 @@ const Header = () => {
                   }`}
                 >
                   <ul className="block lg:flex lg:space-x-12">
-                    {navData.map((menuItem, index) => (
+                    {menuData.map((menuItem, index) => (
                       <li key={menuItem.id} className="group relative">
                         {menuItem.path ? (
                           <Link
@@ -155,9 +180,9 @@ const Header = () => {
                         >
                           <Link
                             href="/account"
-                            className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
+                            className={`flex py-2 text-base text-dark group-hover:opacity-70  dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
                           >
-                            My Info
+                            {t("myInfo")}
                           </Link>
                         </li>
                         <li
@@ -168,7 +193,7 @@ const Header = () => {
                             onClick={handleLogout}
                             className={`flex py-2 text-right text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
                           >
-                            Logout
+                            {t("logout")}
                           </button>
                         </li>
                       </>
@@ -182,10 +207,9 @@ const Header = () => {
                             href="/login"
                             className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6`}
                           >
-                            Login
+                            {t("login")}
                           </Link>
                         </li>
-                       
                       </>
                     )}
                   </ul>
@@ -200,9 +224,9 @@ const Header = () => {
                       href="/login"
                       className="hidden px-7 py-3 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
                     >
-                      Login
+                                                  {t("login")}
+
                     </Link>
-                   
                   </div>
                 ) : (
                   <div className="flex items-center justify-end pr-16 lg:pr-0">
@@ -210,20 +234,26 @@ const Header = () => {
                       href="/account"
                       className="hidden px-7 py-3 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
                     >
-                      My Info
+                      <Avatar
+                        alt={user.firstName}
+                        className="flex-shrink-0"
+                        size="sm"
+                        src={user.image}
+                      />
                     </Link>
                     <button
                       onClick={handleLogout}
                       className="ease-in-up hidden rounded-md bg-primary px-8 py-3 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
                     >
-                      Logout
+                                                  {t("logout")}
+
                     </button>
                   </div>
                 )}
+                <LocaleSwitcher />
                 <ThemeToggler />
               </div>
             </div>
-     
           </div>
         </div>
       </header>

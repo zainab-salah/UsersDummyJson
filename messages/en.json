@@ -1,3 +1,78 @@
 {
-  "HomePage": "Hello"
+  "HomePage": {
+    "h1": "All Users"
+  },
+  "NavItems": {
+    "home": "Home",
+    "myInfo": "My Info",
+    "logout": "Logout",
+    "login": "Login",
+    "search": "Search a user"
+  },
+  "DeleteCard": {
+    "removeAccount": "Remove Account",
+    "title": "Delete User",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "deleteing": "Deleting..."
+  },
+  "EditCard": {
+    "editAccount": "Edit my Account",
+    "title": "Edit your info",
+    "cancel": "Cancel",
+    "update": "Update",
+    "updating": "Updating...",
+    "username": "User Name",
+    "fname": "First Name",
+    "lname": "Last Name",
+    "email": "Email",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "udateYour": "Update your"
+  },
+  "UserData": {
+    "username": "User Name",
+    "fname": "First Name",
+    "lname": "Last Name",
+    "email": "Email",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "desc": "Single User Data"
+  },
+  "login": {
+    "urSignedIn": "You're Signed in!",
+    "GoToSettings": "Go to your account settings",
+    "username": "User Name",
+    "password": "Password",
+    "signIn": "Sign In",
+    "EnterYour": "Enter Your",
+    "signLoad": "Loading...",
+    "usernameReq": "User name is required!",
+    "passReq": "Pasword is required!",
+    "successMeg": "Logged In!"
+  },
+  "Account": {
+    "successMeg": "Logged Out!",
+    "title": "Account Settings",
+    "desc": "Welcome to your Account Settings",
+    "yourInfo": "Your Info",
+    "logout": "Sign Out",
+    "username": "User Name",
+    "fname": "First Name",
+    "lname": "Last Name",
+    "email": "Email",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "uRsignedOut": "You're Signed Out!",
+    "signInAgain": "Sign in again"
+  },
+  "Common":{
+    "back":"  Back to Home Page"},
+    "LocaleSwitcher": {
+      "label": "Change language",
+      "locale": "{locale, select, ar {Arabic} en {English} other {Unknown}}"
+    }
 }

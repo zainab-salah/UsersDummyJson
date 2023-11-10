@@ -1,6 +1,9 @@
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 const NoEnter = () => {
+  const t = useTranslations(["Common"]);
+
   return (
     <>
       <section className="relative z-10 pb-16 pt-36 lg:h-screen bg-white dark:bg-black md:pb-20 lg:pb-28 lg:pt-[180px]">
@@ -136,12 +139,12 @@ const NoEnter = () => {
                 {/* <h3 className="mb-4 text-3xl font-bold text-black dark:text-white sm:text-4xl">
                  Sorry ! page does not exsit
                 </h3> */}
-               
+
                 <Link
                   href="/"
                   className="rounded-md bg-primary px-8 py-3 text-base font-bold text-white shadow-signUp duration-300 hover:bg-white hover:text-primary md:px-9 lg:px-8 xl:px-9"
                 >
-        Back to Home Page
+                  {t("back")}
                 </Link>
               </div>
             </div>
