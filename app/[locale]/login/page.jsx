@@ -56,7 +56,6 @@ const SigninPage = () => {
     mutation.mutate(data);
   };
 
- 
   return (
     <>
       <section className="relative lg:h-screen  z-10 overflow-hidden pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
@@ -86,9 +85,17 @@ const SigninPage = () => {
                       {t("signIn")}
                     </h3>
 
-                    <div className="mb-8 flex items-center justify-center">
+                    <div className="mb-8 flex items-center justify-center mt-2">
                       <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
-
+                      <p className="text-center mx-2 text-[#38973a]">
+                        <span className="font-bold">{t("qlogin")} </span>
+                        <br />
+                        <span className="font-bold">{t("username")}: </span>
+                        kminchelle
+                        <br />
+                        <span className="font-bold">{t("password")}: </span>
+                        0lelplR
+                      </p>
                       <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>

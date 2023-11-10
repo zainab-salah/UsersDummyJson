@@ -51,7 +51,9 @@
     "signLoad": "Loading...",
     "usernameReq": "User name is required!",
     "passReq": "Pasword is required!",
-    "successMeg": "Logged In!"
+    "successMeg": "Logged In!",
+
+    "qlogin": "Quick login:"
   },
   "Account": {
     "successMeg": "Logged Out!",
@@ -69,10 +71,11 @@
     "uRsignedOut": "You're Signed Out!",
     "signInAgain": "Sign in again"
   },
-  "Common":{
-    "back":"  Back to Home Page"},
-    "LocaleSwitcher": {
-      "label": "Change language",
-      "locale": "{locale, select, ar {Arabic} en {English} other {Unknown}}"
-    }
+  "Common": {
+    "back": "  Back to Home Page"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, ar {Arabic} en {English} other {Unknown}}"
+  }
 }
