@@ -8,20 +8,25 @@ This project is a Next.js application built with Tailwind CSS and Next UI. It ut
 ## Features
 
 - **Authentication:** User authentication is handled using Cookie.js and React Context.
+
 ![screencapture-users-dummy-json-vercel-app-account-2023-11-10-21_40_06](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/f8804684-b07f-4f86-a7da-9fbc0a31b30b)
 
 - **Dynamic Routing:** The application supports dynamic routing for displaying single users.
 
 - **Multilingual Support:** The project supports both English (EN) and Arabic (AR) languages using Next Intel.
+
 ![image](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/d0fb9d56-63cf-4323-b280-f7a71e7fbd97)
 
 - **Form Validation:** Forms in the project incorporate form validation messages using React Form Hook.
+
 ![screencapture-users-dummy-json-vercel-app-login-2023-11-10-21_32_12](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/50cbeee0-acc5-409e-8ac1-99e67c4c8f61)
 
 - **User Actions:** Users can perform actions such as logging in, removing their account, editing information, and viewing a list of users or a specific user.
+
 ![image](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/3da122ab-e430-4b83-965f-d1b6a3d66c6b)
 
 - **Search Functionality:** The project includes a user search feature.
+
 ![image](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/266f0538-2d1d-49ce-8948-e39ae36002a5)
 
 - **Dark and Light Theme Switcher:** Users can toggle between dark and light themes using Next.js theme capabilities.
