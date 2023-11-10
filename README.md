@@ -19,6 +19,7 @@ This project is a Next.js application built with Tailwind CSS and Next UI. It ut
 
 - **Form Validation:** Forms in the project incorporate form validation messages using React Form Hook.
 
+
 ![screencapture-users-dummy-json-vercel-app-login-2023-11-10-21_32_12](https://github.com/zainab-salah/UsersDummyJson/assets/76114995/50cbeee0-acc5-409e-8ac1-99e67c4c8f61)
 
 - **User Actions:** Users can perform actions such as logging in, removing their account, editing information, and viewing a list of users or a specific user.
