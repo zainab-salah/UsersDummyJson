@@ -3,18 +3,14 @@ import Link from "next-intl/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import { signIn } from "next-auth/react";
 import { Shap1 } from "@/components/Shapes/Shap1";
 
-import { useRouter } from "next-intl/client";
-import { useMutation } from "@tanstack/react-query";
-
-import { useAuth } from "../context/AuthContext";
-import { toast } from "react-toastify";
 import { useLocale, useTranslations } from "next-intl";
+import { useAuth } from "../context/AuthContext";
 
 const SigninPage = () => {
-  const { user, login } = useAuth();
+  const { user } = useAuth();
   const t = useTranslations(["login"]);
   const locale = useLocale();
   const rtl = locale == "ar" ? "rtl" : "";
@@ -38,22 +34,13 @@ const SigninPage = () => {
     resolver: yupResolver(schema),
   });
 
-  const router = useRouter();
-
-  const mutation = useMutation({
-    mutationFn: login,
-    onSuccess: (data) => {
-      reset();
-      router.push("/account");
-      toast.success(`${t("successMeg")}`);
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
-
   const onSubmit = async (data) => {
-    mutation.mutate(data);
+    const result = await signIn("credentials", {
+      username: data.username,
+      password: data.password,
+      redirect: false,
+    });
+    console.log(result);
   };
 
   return (
@@ -142,27 +129,16 @@ const SigninPage = () => {
 
                       <div className="mb-6">
                         <button
-                          disabled={
-                            mutation.isPending ||
-                            mutation.isLoading ||
-                            mutation.isFetching
-                          }
+                   
                           type="submit"
                           className=" flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
                         >
-                          {mutation.isPending ? t("signLoad") : t("signIn")}
+                          login
+                   
                         </button>
                       </div>
                     </form>
-                    {/* <p className="text-center text-base font-medium text-body-color">
-                  Don't Have an account?
-                  <Link
-                    href="/signup"
-                    className="mx-1 text-primary hover:underline"
-                  >
-                    Create New Account
-                  </Link>
-                </p> */}
+               
                   </>
                 )}
               </div>

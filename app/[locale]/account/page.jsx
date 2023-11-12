@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import SectionTitle from "@/components/common/SectionTitle";
 
 import Loading from "../loading";
-
+import { useSession } from 'next-auth/react';
 import { Shap3 } from "@/components/Shapes/Shap3";
 
 import Shap2 from "@/components/Shapes/Shap2";
@@ -18,7 +18,7 @@ import { useLocale, useTranslations } from "next-intl";
 
 const Account = () => {
   const { user, logout, setUser } = useAuth();
-
+  const {session, loading}= useSession();
   // const { isPending, error, data, isFetching } = useQuery({
   //   queryKey: ["userData"],
   //   queryFn: () =>
@@ -35,10 +35,21 @@ const Account = () => {
     router.push("/");
     toast.success(`${t("successMeg")}`);
   };
+  if (loading) {
+    // Show a loading spinner or skeleton screen
+    return <p>Loading...</p>;
+  }
 
+  // if (!session) {
+  //   // Redirect to the login page if the user is not authenticated
+  //   // router.push('/login');
+  //   return null;
+  // }
+  console.log(session)
   return (
     <>
-      <section className="relative  z-10 py-28 md:py-36 lg:py-36">
+
+      {/* <section className="relative  z-10 py-28 md:py-36 lg:py-36">
         <div className={`container ${rtl} overflow-hidden`}>
           <SectionTitle
             title={t("title")}
@@ -202,7 +213,7 @@ const Account = () => {
         </div>
 
         <Shap3 />
-      </section>
+      </section> */}
     </>
   );
 };
