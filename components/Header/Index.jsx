@@ -6,16 +6,16 @@ import ThemeToggler from "./ThemeToggler";
 import Logo from "@/public/Logo";
 
 import { useRouter } from "next-intl/client";
-
-import { useAuth } from "@/app/[locale]/context/AuthContext";
+ 
 import { toast } from "react-toastify";
 import Search from "./Search";
 import { Avatar } from "@nextui-org/react";
 import LocaleSwitcher from "./LangSwitcher";
 import { useTranslations } from "next-intl";
+import { signOut, useSession } from "next-auth/react";
 
 const Header = () => {
-  const { user, logout } = useAuth();
+ 
   const t = useTranslations("NavItems");
   const menuData = [
     {
@@ -59,6 +59,10 @@ const Header = () => {
     window.addEventListener("scroll", handleStickyNavbar);
   });
 
+
+  const { data: session, loading } = useSession();
+
+
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
   const handleSubmenu = (index) => {
@@ -69,7 +73,7 @@ const Header = () => {
     }
   };
   const handleLogout = async (e) => {
-    await logout();
+  signOut()  
     router.push("/");
     toast.success("Logged Out!");
   };
@@ -173,7 +177,7 @@ const Header = () => {
                         )}
                       </li>
                     ))}
-                    {user ? (
+                    {session ? (
                       <>
                         <li
                           className="group  relative block lg:hidden"
@@ -219,7 +223,7 @@ const Header = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                {user === null ? (
+                {!session?.user ? (
                   <div className="flex items-center justify-center lg:pr-0">
                     <Link
                       href="/login"
@@ -235,10 +239,10 @@ const Header = () => {
                       className="hidden px-7 py-3 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
                     >
                       <Avatar
-                        alt={user.firstName}
+                        alt={session?.user.firstName}
                         className="flex-shrink-0"
                         size="sm"
-                        src={user.image}
+                        src={session?.user.image}
                       />
                     </Link>
                     <button

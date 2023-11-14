@@ -7,11 +7,12 @@ import { ThemeProvider } from "next-themes";
 import { AuthContextProvider } from "./context/AuthContext";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
+import { SessionProvider } from "next-auth/react"
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ar" }];
 }
 // import Loading from "./loading";
-export default function Providers({ children, locale, messages }) {
+export default function Providers({ children, locale, messages,session }) {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -21,6 +22,9 @@ export default function Providers({ children, locale, messages }) {
   });
 
   return (
+    <SessionProvider session={session}>
+
+
     <AuthContextProvider>
       <NextUIProvider>
         <ThemeProvider
@@ -48,5 +52,6 @@ export default function Providers({ children, locale, messages }) {
         </ThemeProvider>
       </NextUIProvider>
     </AuthContextProvider>
+    </SessionProvider>
   );
 }

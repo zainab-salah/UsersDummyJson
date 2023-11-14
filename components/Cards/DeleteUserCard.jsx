@@ -13,8 +13,9 @@ import { deleteUser } from "@/libs/deleteUser";
 import { toast } from "react-toastify";
 import { useRouter } from "next-intl/client";
 import { useLocale, useTranslations } from "next-intl";
+import { signOut } from "next-auth/react";
 
-export default function DeleteUserCard({ user, logout }) {
+export default function DeleteUserCard({ user }) {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const router = useRouter();
   const t = useTranslations("DeleteCard");
@@ -23,7 +24,7 @@ export default function DeleteUserCard({ user, logout }) {
   const mutation = useMutation({
     mutationFn: deleteUser,
     onSuccess: async (data) => {
-      await logout();
+    await signOut()
       onClose();
       router.push("/");
       toast.success(`${data.firstName} Deleted Successfully.`);
