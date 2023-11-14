@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
 import {
@@ -18,26 +18,28 @@ import { toast } from "react-toastify";
 import { useLocale, useTranslations } from "next-intl";
 
 export default function ModalCard({ user, setNewUser }) {
-  const [data, setData] = useState(user);
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      id: data.id,
-      username: data.username,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      gender: data.gender,
-    },
-  });
   const t = useTranslations(["EditCard"]);
   const locale = useLocale();
   const rtl = locale == "ar" ? "rtl" : "";
+  
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      id: user?.id,
+      username: user?.username,
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      email: user?.email,
+      gender: user?.gender,
+    },
+  });
+ 
+
   const mutation = useMutation({
     mutationFn: updateUser,
     onSuccess: async (data) => {
       onClose();
-      setData(data);
+ 
       setNewUser(data);
     },
     onError: (error) => {

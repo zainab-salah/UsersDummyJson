@@ -3,21 +3,23 @@ import Link from "next-intl/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { Shap1 } from "@/components/Shapes/Shap1";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useAuth } from "../context/AuthContext";
+
+import { toast } from "react-toastify";
+import { useRouter } from "next-intl/client";
 
 const SigninPage = () => {
-  const { user } = useAuth();
+  const { data: session } = useSession()
+  
   const t = useTranslations(["login"]);
   const locale = useLocale();
   const rtl = locale == "ar" ? "rtl" : "";
 
   const schema = yup.object({
     username: yup.string().required(t("usernameReq")),
-
     password: yup.string().required(t("passReq")),
   });
 
@@ -33,16 +35,20 @@ const SigninPage = () => {
     },
     resolver: yupResolver(schema),
   });
+  const router = useRouter();
 
   const onSubmit = async (data) => {
-    const result = await signIn("credentials", {
+    await signIn("credentials", {
       username: data.username,
       password: data.password,
       redirect: false,
     });
-    console.log(result);
+    reset();
+    router.push("/account");
+    toast.success(`${t("successMeg")}`);
   };
-
+ 
+ 
   return (
     <>
       <section className="relative lg:h-screen  z-10 overflow-hidden pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
@@ -52,7 +58,7 @@ const SigninPage = () => {
               <div
                 className={`${rtl} mx-auto max-w-[500px] rounded-md bg-primary bg-opacity-5 px-6 py-10 dark:bg-dark sm:p-[60px]`}
               >
-                {user ? (
+                {session ? (
                   <>
                     <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
                       {t("urSignedIn")}
@@ -64,6 +70,7 @@ const SigninPage = () => {
                       >
                         {t("GoToSettings")}
                       </Link>
+                    
                     </div>
                   </>
                 ) : (
